@@ -1,17 +1,16 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
+var TodoApp = require('TodoApp');
 
-//require('style!css!foundation-sites/dist/foundation.min.css')
-
+// Load foundation
 $(document).foundation();
 
-require('style!css!sass!applicationStyles');
-
-var {Route, Router, IndexRoute, hashHistory}=require('react-router');
-
+// App css
+require('style!css!sass!applicationStyles')
 
 ReactDOM.render(
-  <p>react Boilerplate</p>, 
+  <TodoApp />,
   document.getElementById('app')
 );
