@@ -18,9 +18,22 @@ describe('TodoList', () => {
     var addTodoForm = TestUtils.renderIntoDocument(<AddTodoForm onAddTodo={spy}/>);
     var $el = $(ReactDOM.findDOMNode(addTodoForm));
 
-    addTodoForm.refs.text.value = "check mail";
+    addTodoForm.refs.todoText.value = "check mail";
     TestUtils.Simulate.submit($el.find('form')[0]);
 
     expect(spy).toHaveBeenCalledWith('check mail');
   });
+
+
+  it ('should not call onAddTodo Prop with valid data', ()=> {
+      var spy = expect.createSpy();
+      var addTodoForm = TestUtils.renderIntoDocument(<AddTodoForm onAddTodo={spy}/>);
+      var $el = $(ReactDOM.findDOMNode(addTodoForm));
+
+      addTodoForm.refs.todoText.value = "";
+      TestUtils.Simulate.submit($el.find('form')[0]);
+
+      expect(spy).toNotHaveBeenCalled();
+    });
+
 });

@@ -4,6 +4,7 @@ var Todo = require('Todo');
 var TodoList = React.createClass({
   render: function(){
     var {todos} = this.props;
+    console.log("todos", todos); 
     var renderTodos = () => {
       return todos.map((todo) => {
         // ...: spread operator
@@ -14,7 +15,7 @@ var TodoList = React.createClass({
     };
     return (
       <div>
-        {renderTodos()}
+        {renderTodos() }
       </div>
     );
   }
