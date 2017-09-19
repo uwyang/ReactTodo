@@ -26,6 +26,7 @@ module.exports = {
       'node_modules',
       //now we don't need to specify aliases for everything.
       './app/components',
+      './app/api', 
     ],
     alias: {
       applicationStyles: 'app/styles/app.scss',
