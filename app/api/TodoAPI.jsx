@@ -24,12 +24,28 @@ module.exports = {
     var filteredTodos = todos;
     //filterby showCompleted
     filteredTodos = filteredTodos.filter((todo) => {
-      return todo.completed || !showCompleted;
+      return !todo.completed || showCompleted;
     });
 
     //filter by searchText
+    filteredTodos.sort((a, b)  => {
+      if (a.completed && b.completed){
+        return -1;
+      }else if (a.completed && !b.completed){
+        return 1;
+      }else {
+        return 0;
+      }
+    });
 
 
+    filteredTodos = filteredTodos.filter((todo) => {
+      var todoText = todo.text.toLowerCase();
+      return searchText.length ===0 ||
+        todoText.indexOf(searchText) > -1;
+
+    });
+    console.log(filteredTodos.length);
 
 
     return filteredTodos;

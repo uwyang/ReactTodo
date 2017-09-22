@@ -9,7 +9,7 @@ var TodoSearch = React.createClass({
         </div>
         <div>
           <input type="checkbox" ref="showCompleted" onChange={this.handleSearch}/>
-          Show Completed Todos
+          include Completed Todos as well
         </div>
       </div>
     );
