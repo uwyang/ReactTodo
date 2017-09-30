@@ -1,6 +1,7 @@
 var React = require('react');
 var {connect} = require('react-redux');
-var Todo = require('Todo');
+//importing the connected version. 
+import Todo from 'Todo';
 
 export var TodoList = React.createClass({
   render: function () {
@@ -27,10 +28,15 @@ export var TodoList = React.createClass({
   }
 });
 
-export default connect(
-  (state) => {
-    return {
-      todos: state.todos
-    };
-  }
-)(TodoList);
+
+//connect redux store to individual components.
+//TodoList can now request data it needs to conenct itself.
+export default connect((state)=> {
+  return {
+    //specify part of state for this guy to have. in props.
+    //you can return everything, or just todos.
+    todos: state.todos,
+    //...state
+  };
+})(TodoList);
+//TodoList is connected to be provider.
