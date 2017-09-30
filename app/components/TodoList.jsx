@@ -1,4 +1,5 @@
 var React = require('react');
+var {connect} = require('react-redux');
 var Todo = require('Todo');
 
 var TodoList = React.createClass({
@@ -12,7 +13,7 @@ var TodoList = React.createClass({
           );
         }
         return (
-          <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+          <Todo key={todo.id} {...todo} />
         );
       });
     };
@@ -25,4 +26,14 @@ var TodoList = React.createClass({
   }
 });
 
-module.exports = TodoList;
+//connect redux store to individual components.
+//TodoList can now request data it needs to conenct itself.
+module.exports = connect((state)=> {
+  return {
+    //specify part of state for this guy to have. in props.
+    //you can return everything, or just todos.
+    todos: state.todos,
+    //...state
+  };
+})(TodoList);
+//TodoList is connected to be provider.
