@@ -10,10 +10,10 @@ export var configure = (initialState={}) => {
     todos: todosReducer,
   });
 
-  var store = redux.createStore(reducer,initialState,
+  var store = redux.createStore(reducer, initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  
-);
+
+  );
 
   return store;
 };
