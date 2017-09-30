@@ -3,7 +3,8 @@ var moment = require('moment');
 var {connect} = require('react-redux');
 var actions = require('actions');
 
-var Todo = React.createClass({
+//only used by test.
+export var Todo = React.createClass({
   render: function () {
     var {id, text, completed, createdAt, completedAt, dispatch} = this.props;
     var todoClassName = completed ? 'todo todo-completed' : 'todo';
@@ -36,5 +37,6 @@ var Todo = React.createClass({
   }
 });
 
-// from connect, dispatch is available in props. 
-module.exports = connect()(Todo);
+// from connect, dispatch is available in props.
+// it expects a store to exist.
+export default connect()(Todo);
