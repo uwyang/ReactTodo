@@ -42,7 +42,7 @@ export var todosReducer = (state=[], action) => {
               completedAt: c?moment().unix():undefined,
             };
           }else{
-            return todo; 
+            return t; 
           }
         });
       break;
