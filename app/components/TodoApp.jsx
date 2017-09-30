@@ -6,6 +6,7 @@ var AddTodoForm = require('AddTodoForm');
 var TodoSearch = require('TodoSearch');
 var uuid = require('uuid');
 var TodoAPI = require('TodoAPI');
+var moment = require('moment');
 
 
 var TodoApp = React.createClass({
@@ -14,10 +15,12 @@ var TodoApp = React.createClass({
   },
 
   getInitialState: function(){
+
     return {
       showCompleted: false,
       searchText: "",
       todos: [
+      /*
         {
           id: uuid(),
           text: 'walk the dog',
@@ -37,7 +40,7 @@ var TodoApp = React.createClass({
           id: uuid(),
           text: 'brush up resume',
           completed: false,
-        }
+        }*/
       ]
     }
   },
@@ -49,10 +52,17 @@ var TodoApp = React.createClass({
     console.log("render TodoApp", todos);
     return (
       <div>
-        <TodoSearch onSearch={this.handleSearch} />
-        <p>Todo List: </p>
-        <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
-        <AddTodoForm onAddTodo={this.handleAddTodo} />
+        <h1 className='page-title'>Todo App</h1>
+        <div className = 'row'>
+          <div className="column small-centered small-11 medium-6 large=5">
+            <div className="container">
+              <TodoSearch onSearch={this.handleSearch} />
+              <p>Todo List: </p>
+              <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
+              <AddTodoForm onAddTodo={this.handleAddTodo} />
+            </div>
+          </div>
+        </div>
       </div>
     );
   },
@@ -71,7 +81,9 @@ var TodoApp = React.createClass({
         ...this.state.todos, {
           id: uuid(),
           text: text,
-        completed: false,
+          completed: false,
+          createdAt: moment().unix(),
+          compeletedAt: undefined,
         }
       ]
     });
@@ -84,6 +96,7 @@ var TodoApp = React.createClass({
       if (todo.id === id){
         todo.completed = !todo.completed;
       }
+      if(todo.completed) todo.completedAt = moment().unix();
       //forgetting this line costed me an hour.
       return todo;
     });

@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var expect = require('expect');
 var $ = require('jquery');
 var TestUtils = require('react-addons-test-utils');
+var moment = require('moment');
 
 var TodoApp = require('TodoApp');
 
@@ -39,4 +40,27 @@ describe('TodoApp', () => {
     todoApp.handleToggle(11);
      expect(todoApp.state.todos[0].completed).toBe(true);
   });
+
+  it ('should toggle completedAt value when handleToggle is called', () => {
+    var todoData = {
+      id: 11,
+      text: 'test features',
+      completed: false,
+      createdAt: 0,
+      completedAt: undefined,
+    };
+    var todoApp = TestUtils.renderIntoDocument(<TodoApp />);
+    todoApp.setState({todos: [todoData]});
+
+    //check todo's first item is false
+    //call handle toggle
+    //verify value change.
+    expect(todoApp.state.todos[0].completed).toBe(false);
+    //var $el = $(ReactDOM.findDOMNode(todoApp));
+    //TestUtils.Simulate.onClick.($el.find()[0]);
+    todoApp.handleToggle(11);
+    var timestamp = moment().unix();
+     expect(todoApp.state.todos[0].completedAt).toBe(timestamp);
+  });
+
 });

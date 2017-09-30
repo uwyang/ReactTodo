@@ -1,11 +1,11 @@
-// in import, leave off underscore and extension.
 @import "base/variables";
 
-//foundation
-// if we change variable in foundation-settings,
-//it will get loaded and rendered in foundation
+// foundation
 @import "base/foundation-settings";
 @import "foundation";
 @include foundation-everything;
 
-//components
+// Components
+@import "components/container";
+@import "components/page-title";
+@import "components/todo";
