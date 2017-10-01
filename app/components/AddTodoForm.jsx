@@ -9,6 +9,7 @@ export var AddTodoForm = React.createClass({
     var {dispatch} = this.props;
     if (todoText.value.length >0){
         dispatch(actions.addTodo(todoText.value));
+        this.refs.todoText.value = ''; 
     }else{
       this.refs.todoText.focus();
     }
